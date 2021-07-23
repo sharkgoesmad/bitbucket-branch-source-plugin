@@ -112,6 +112,7 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
@@ -941,6 +942,7 @@ public class BitbucketServerAPIClient implements BitbucketApi {
     private CloseableHttpClient getHttpClient(final HttpRequestBase request) {
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
         httpClientBuilder.useSystemProperties();
+        httpClientBuilder.setRetryHandler(new StandardHttpRequestRetryHandler());
 
         RequestConfig.Builder requestConfig = RequestConfig.custom();
         String connectTimeout = System.getProperty("http.connect.timeout", "10");
