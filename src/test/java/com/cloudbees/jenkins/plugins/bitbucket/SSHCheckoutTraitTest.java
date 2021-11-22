@@ -35,7 +35,7 @@ public class SSHCheckoutTraitTest {
         SSHCheckoutTrait instance = new SSHCheckoutTrait("keyId");
         BitbucketGitSCMBuilder probe =
                 new BitbucketGitSCMBuilder(new BitbucketSCMSource("example", "does-not-exist"),
-                        new BranchSCMHead("master"), null, "scanId");
+                        new BranchSCMHead("main"), null, "scanId");
         assumeThat(probe.credentialsId(), is("scanId"));
         instance.decorateBuilder(probe);
         assertThat(probe.credentialsId(), is("keyId"));
@@ -46,7 +46,7 @@ public class SSHCheckoutTraitTest {
         SSHCheckoutTrait instance = new SSHCheckoutTrait(null);
         BitbucketGitSCMBuilder probe =
                 new BitbucketGitSCMBuilder(new BitbucketSCMSource( "example", "does-not-exist"),
-                        new BranchSCMHead("master"), null, "scanId");
+                        new BranchSCMHead("main"), null, "scanId");
         assumeThat(probe.credentialsId(), is("scanId"));
         instance.decorateBuilder(probe);
         assertThat(probe.credentialsId(), is(nullValue()));
